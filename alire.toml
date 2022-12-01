@@ -1,0 +1,9 @@
+name = "aoc2022"
+description = "Shiny new project"
+version = "0.1.0-dev"
+
+authors = ["Andrew Stanton-Nurse"]
+maintainers = ["Andrew Stanton-Nurse <contact@analogrelay.net>"]
+maintainers-logins = ["analogrelay"]
+
+executables = ["aoc2022"]
