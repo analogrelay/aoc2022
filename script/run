@@ -1,0 +1,12 @@
+#!/bin/bash
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+REPO_DIR=$(dirname "$SCRIPT_DIR")
+
+day=$1
+if [ -z "$day" ]; then
+    echo "Usage: script/run [day]"
+    exit 1
+fi
+day=$(echo $day | awk '{printf "%02d\n", $0;}')
+
+ADVENT_DATA_ROOT="$REPO_DIR/data/" ADVENT_DEBUG=1 alr --no-color run "day_$day"

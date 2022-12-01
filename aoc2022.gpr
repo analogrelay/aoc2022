@@ -1,14 +1,41 @@
 with "config/aoc2022_config.gpr";
-project Aoc2022 is
+project aoc2022 is
 
    for Source_Dirs use ("src/", "config/");
-   for Object_Dir use "obj/" & Aoc2022_Config.Build_Profile;
+   for Object_Dir use "obj/" & aoc2022_Config.Build_Profile;
    for Create_Missing_Dirs use "True";
    for Exec_Dir use "bin";
-   for Main use ("aoc2022.adb");
+
+   for Main use (
+      "day_01.adb",
+      "day_02.adb",
+      "day_03.adb",
+      "day_04.adb",
+      "day_05.adb",
+      "day_06.adb",
+      "day_07.adb",
+      "day_08.adb",
+      "day_09.adb",
+      "day_10.adb",
+      "day_11.adb",
+      "day_12.adb",
+      "day_13.adb",
+      "day_14.adb",
+      "day_15.adb",
+      "day_16.adb",
+      "day_17.adb",
+      "day_18.adb",
+      "day_19.adb",
+      "day_20.adb",
+      "day_21.adb",
+      "day_22.adb",
+      "day_23.adb",
+      "day_24.adb",
+      "day_25.adb"
+   );
 
    package Compiler is
-      for Default_Switches ("Ada") use Aoc2022_Config.Ada_Compiler_Switches;
+      for Default_Switches ("Ada") use aoc2022_Config.Ada_Compiler_Switches;
    end Compiler;
 
    package Binder is
@@ -19,4 +46,4 @@ project Aoc2022 is
       for Artifacts (".") use ("share");
    end Install;
 
-end Aoc2022;
+end aoc2022;
