@@ -5,6 +5,7 @@ with Ada.Strings.Fixed;         use Ada.Strings.Fixed;
 with Ada.Strings.Unbounded;     use Ada.Strings.Unbounded;
 with Ada.Environment_Variables; use Ada.Environment_Variables;
 with Ada.Directories;           use Ada.Directories;
+with Ada.Characters.Latin_1; use Ada.Characters.Latin_1;
 
 package body AdventLib is
    procedure Open_Data_File

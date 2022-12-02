@@ -1,10 +1,12 @@
 FROM debian:11
 
+# Dependencies for Alire
 RUN apt-get update && apt-get install -y \
     gnat \
     gprbuild \
     build-essential \
     git \
+    curl \
     && rm -Rf /var/lib/apt/lists/*
 
 RUN mkdir /work \
@@ -15,3 +17,6 @@ RUN mkdir /work \
     && cp bin/alr /usr/local/bin \
     && cd / \
     && rm -Rf /work
+
+# Install Ada Toolchain
+RUN alr toolchain --install gnat_native=12.2.1 --install gprbuild=22.0.1
