@@ -23,20 +23,20 @@ procedure Day_02 is
       Win_Lose_Points : Integer := 0;
       Move_Points     : Integer := 0;
    begin
-      --  I win
       if (My_Move = Rock and then Their_Move = Scissors)
         or else (My_Move = Paper and then Their_Move = Rock)
         or else (My_Move = Scissors and then Their_Move = Paper)
       then
+         --  I win
          Win_Lose_Points := 6;
-         --  I lose
       elsif (Their_Move = Rock and then My_Move = Scissors)
         or else (Their_Move = Paper and then My_Move = Rock)
         or else (Their_Move = Scissors and then My_Move = Paper)
       then
+         --  I lose
          Win_Lose_Points := 0;
-         --  We draw
       else
+         --  We draw
          Win_Lose_Points := 3;
       end if;
 
