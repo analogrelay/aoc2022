@@ -1,7 +1,5 @@
 with Ada.Text_IO;    use Ada.Text_IO;
 with AdventLib;      use AdventLib;
-with Ada.Containers; use Ada.Containers;
-with Ada.Containers.Vectors;
 
 procedure Day_01 is
    procedure Part_1 (Input_Name : String) is
@@ -32,17 +30,12 @@ procedure Day_01 is
    end Part_1;
 
    procedure Part_2 (Input_Name : String) is
-      package Integer_Vectors is new Ada.Containers.Vectors
-        (Index_Type => Natural, Element_Type => Integer);
-      package Integer_Vectors_Sorting is new Integer_Vectors.Generic_Sorting;
-      use Integer_Vectors;
-      use Integer_Vectors_Sorting;
-
       F              : File_Type;
-      Calorie_Counts : Vector;
       Running        : Integer := 0;
       Sum            : Integer := 0;
-
+      Max: Integer := 0;
+      Second_Max: Integer := 0;
+      Third_Max: Integer := 0;
    begin
       Open_Data_File (F, 1, Input_Name);
 
@@ -54,18 +47,23 @@ procedure Day_01 is
             if Try_Get_Integer_Line (F, Current) then
                Running := Running + Current;
             else
-               Calorie_Counts.Append (Running);
+               if Running > Max then
+                  Third_Max := Second_Max;
+                  Second_Max := Max;
+                  Max := Running;
+               elsif Running > Second_Max then
+                  Third_Max := Second_Max;
+                  Second_Max := Running;
+               elsif Running > Third_Max then
+                  Third_Max := Running;
+               end if;
                Running := 0;
             end if;
          end;
       end loop;
 
       --  Find the largest 3 items and sum them
-      Sort (Calorie_Counts);
-      Sum :=
-        Calorie_Counts (Calorie_Counts.Last_Index) +
-        Calorie_Counts (Calorie_Counts.Last_Index - 1) +
-        Calorie_Counts (Calorie_Counts.Last_Index - 2);
+      Sum := Max + Second_Max + Third_Max;
       Put_Line ("Part 1 " & Input_Name & " Result: " & Sum'Image);
 
       Close (F);
