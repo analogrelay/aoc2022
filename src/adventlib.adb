@@ -5,7 +5,6 @@ with Ada.Strings.Fixed;         use Ada.Strings.Fixed;
 with Ada.Strings.Unbounded;     use Ada.Strings.Unbounded;
 with Ada.Environment_Variables; use Ada.Environment_Variables;
 with Ada.Directories;           use Ada.Directories;
-with Ada.Characters.Latin_1; use Ada.Characters.Latin_1;
 
 package body AdventLib is
    procedure Open_Data_File
@@ -29,6 +28,13 @@ package body AdventLib is
    end Get_Data_Root;
 
    procedure Dbg(Message: String) is
+   begin
+      if Value ("ADVENT_DEBUG", "0") = "1" then
+         Put_Line ("DBG: " & Message);
+      end if;
+   end Dbg;
+
+   procedure Dbg(Message: Unbounded_String) is
    begin
       if Value ("ADVENT_DEBUG", "0") = "1" then
          Put_Line ("DBG: " & Message);

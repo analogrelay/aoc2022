@@ -33,3 +33,6 @@ executables = [
     "day_24",
     "day_25",
 ]
+
+[[depends-on]]
+gnatprove = "^12.1.1"
