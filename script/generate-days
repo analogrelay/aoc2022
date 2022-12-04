@@ -1,14 +1,19 @@
+#!/bin/bash
+
+for i in {5..25}; do
+    padi=$(printf %02d $i);
+    cat <<EOF > src/day_$padi.adb
 with Ada.Strings.Unbounded;    use Ada.Strings.Unbounded;
 with Ada.Text_IO;              use Ada.Text_IO;
 with Ada.Text_IO.Unbounded_IO; use Ada.Text_IO.Unbounded_IO;
 with AdventLib;                use AdventLib;
 
-procedure Day_10 is
+procedure Day_$padi is
    procedure Part_1 (Input_Name : String) is
       F : File_Type;
       Result: Natural;
    begin
-      Open_Data_File (F, 10, Input_Name);
+      Open_Data_File (F, $i, Input_Name);
 
       while not End_Of_File (F) loop
          declare
@@ -26,7 +31,7 @@ procedure Day_10 is
       F : File_Type;
       Result: Natural;
    begin
-      Open_Data_File (F, 10, Input_Name);
+      Open_Data_File (F, $i, Input_Name);
 
       while not End_Of_File (F) loop
          declare
@@ -40,9 +45,13 @@ procedure Day_10 is
       Close (F);
    end Part_2;
 begin
-   Put_Line ("Advent of Code Day 10");
+   Put_Line ("Advent of Code Day $padi");
    --  Part_1 ("test");
    --  Part_1 ("input");
    --  Part_2 ("test");
    --  Part_2 ("input");
-end Day_10;
+end Day_$padi;
+EOF
+    touch "data/test.day_$padi.txt"
+    touch "data/input.day_$padi.txt"
+done
