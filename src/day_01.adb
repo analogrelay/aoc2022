@@ -64,7 +64,7 @@ procedure Day_01 is
 
       --  Find the largest 3 items and sum them
       Sum := Max + Second_Max + Third_Max;
-      Put_Line ("Part 1 " & Input_Name & " Result: " & Sum'Image);
+      Put_Line ("Part 2 " & Input_Name & " Result: " & Sum'Image);
 
       Close (F);
    end Part_2;
