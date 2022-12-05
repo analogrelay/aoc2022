@@ -103,36 +103,20 @@ procedure Day_05 is
             --  Dbg ("Current move: " & To_String (Line));
 
             --  Execute the move
-            for I in 1 .. Current_Move.Amount loop
-               declare
-                  To_Board   : Character_Vectors.Vector :=
-                    The_Board (Current_Move.To - 1);
-                  From_Board : Character_Vectors.Vector :=
-                    The_Board (Current_Move.From - 1);
-               begin
-                  To_Board.Append (From_Board.Last_Element);
-                  From_Board.Delete (From_Board.Last_Index);
-                  The_Board (Current_Move.To - 1)   := To_Board;
-                  The_Board (Current_Move.From - 1) := From_Board;
-               end;
-            end loop;
+            declare
+               To_Board   : Character_Vectors.Vector :=
+                  The_Board (Current_Move.To - 1);
+               From_Board : Character_Vectors.Vector :=
+                  The_Board (Current_Move.From - 1);
+            begin
+               for I in 1 .. Current_Move.Amount loop
+                     To_Board.Append (From_Board.Last_Element);
+                     From_Board.Delete (From_Board.Last_Index);
+               end loop;
 
-            --  Dump the board state after the move
-            --  for I in The_Board.First_Index .. The_Board.Last_Index loop
-            --     declare
-            --        S : Unbounded_String := To_Unbounded_String ("");
-            --     begin
-            --        S :=
-            --          S & "Column " & To_Unbounded_String (Natural'Image (I)) &
-            --          ": ";
-            --        for J in
-            --          The_Board (I).First_Index .. The_Board (I).Last_Index
-            --        loop
-            --           S := S & The_Board (I) (J);
-            --        end loop;
-            --        Dbg (S);
-            --     end;
-            --  end loop;
+               The_Board (Current_Move.To - 1)   := To_Board;
+               The_Board (Current_Move.From - 1) := From_Board;
+            end;
          end;
       end loop;
 
@@ -188,23 +172,6 @@ procedure Day_05 is
                The_Board (Current_Move.To - 1)   := To_Board;
                The_Board (Current_Move.From - 1) := From_Board;
             end;
-
-            --  --  Dump the board state after the move
-            --  for I in The_Board.First_Index .. The_Board.Last_Index loop
-            --     declare
-            --        S : Unbounded_String := To_Unbounded_String ("");
-            --     begin
-            --        S :=
-            --          S & "Column " & To_Unbounded_String (Natural'Image (I)) &
-            --          ": ";
-            --        for J in
-            --          The_Board (I).First_Index .. The_Board (I).Last_Index
-            --        loop
-            --           S := S & The_Board (I) (J);
-            --        end loop;
-            --        Dbg (S);
-            --     end;
-            --  end loop;
          end;
       end loop;
 
