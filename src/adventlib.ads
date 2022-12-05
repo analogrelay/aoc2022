@@ -2,7 +2,7 @@ with Ada.Text_IO;
 with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
 
 package AdventLib is
-   type Day_Type is range 0 .. 25;
+   type Day_Type is range 1 .. 25;
 
    procedure Open_Data_File
      (F : in out Ada.Text_IO.File_Type; Day : Day_Type; Name : String);
